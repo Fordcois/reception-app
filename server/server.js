@@ -8,7 +8,7 @@ const pool = require("./db");
 app.use(cors());
 app.use(express.json());
 
-app.listen(PORT, () => {console.log(`Server running on PORT ${PORT}`)} );
+app.listen(PORT, () => {console.log(`Server starting on PORT: ${PORT}`)} );
 
 // Get all Records
 app.get("/userrecords", async (req, res) => {
