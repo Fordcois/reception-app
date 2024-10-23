@@ -5,5 +5,6 @@ CREATE TABLE "users" (
     "first_name" VARCHAR(255),
     "last_name" VARCHAR(255),
     "job_title" VARCHAR(255),
+    "picture_url" VARCHAR(255)
     "in_building" BOOLEAN,
 );
