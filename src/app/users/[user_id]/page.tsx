@@ -8,6 +8,7 @@ export default function SingleUserPage() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
+          // TODO - Remove hard coded update
           user_id: 3,
           in_building: false
         }),
