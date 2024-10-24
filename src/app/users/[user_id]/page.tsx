@@ -3,7 +3,8 @@ import { notFound } from "next/navigation";
 import Image from "next/image";
 import { UpdateButton } from "@/components/updateButton";
 
-export default async function Page({ params }: { params: { user_id: string } }) {
+export default async function Page(props: { params: Promise<{ user_id: string }> }) {
+  const params = await props.params;
   const id = await params.user_id;
 
   try {
@@ -24,5 +25,5 @@ export default async function Page({ params }: { params: { user_id: string } }) 
     );
   } catch {
     notFound();
-  } 
-  };
+  }
+};

@@ -1,7 +1,8 @@
 import { NextResponse } from 'next/server';
 import pool from '@/lib/db';
 
-export async function GET(request: Request, { params }: { params: { userid: string } }) {
+export async function GET(request: Request, props: { params: Promise<{ userid: string }> }) {
+    const params = await props.params;
     try {
         const { userid } = params;
         console.log(`Fetching records for user: ${userid}`);
