@@ -1,41 +1,29 @@
-'use client';
-type Props = {params: { user_id: string }}
-
-export default function SingleUserPage({ params }: Props) {
-  const user_id = params.user_id;
-
+'use client'
+export default function SingleUserPage() {
   const updateUserStatus = async () => {
-    console.log('Button Clicked')
     try {
-      const response = await fetch(`/api/userrecords/setinbuilding/${user_id}`, {
-        method: 'GET',
+      const response = await fetch(`/api/userrecords/setinbuilding`, {
+        method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
         },
-        // body: JSON.stringify({
-        //   in_building: false,
-        // }),
+        body: JSON.stringify({
+          user_id: 3,
+          in_building: false
+        }),
       });
-
-      const data = await response.json();
-
       if (!response.ok) {
-        throw new Error(data.error || 'Failed to update user status');
-      }
-    } catch (error) {
-      console.log(error.message)
-    } 
+        throw new Error('Failed to update user status');}
+    } catch {
+      console.error('Error updating user');
+    }
   };
 
   return (
     <div>
-      {user_id}
-      <button
-        onClick={updateUserStatus}>
-          Update User
+      <button onClick={updateUserStatus}>
+        Update User
       </button>
-
-     
     </div>
   );
 }
