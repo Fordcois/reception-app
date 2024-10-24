@@ -1,30 +1,23 @@
-'use client'
-export default function SingleUserPage() {
-  const updateUserStatus = async () => {
-    try {
-      const response = await fetch(`/api/userrecords/setinbuilding`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          // TODO - Remove hard coded update
-          user_id: 3,
-          in_building: false
-        }),
-      });
-      if (!response.ok) {
-        throw new Error('Failed to update user status');}
-    } catch {
-      console.error('Error updating user');
-    }
-  };
+import { getSingleUser } from "@/lib/api/getSingleUser";
+import { notFound } from "next/navigation"; 
+import { UpdateButton } from "@/components/updateButton";
 
-  return (
-    <div>
-      <button onClick={updateUserStatus}>
-        Update User
-      </button>
-    </div>
-  );
-}
+export default async function Page({ params }: { params: { user_id: string } }) {
+  const id = params.user_id;
+
+  try {
+    const user = await getSingleUser(id);
+
+    return (
+      <div>
+        <h1>User Details</h1>
+        {user.first_name} {user.last_name}
+        <br />{user.job_title}
+        <br />{user.in_building}
+        <UpdateButton user_id={user.user_id} in_building={user.in_building}/>
+      </div>
+    );
+  } catch {
+    notFound();
+  } 
+  };

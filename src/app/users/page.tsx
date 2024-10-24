@@ -1,33 +1,17 @@
-'use client';
-import { useEffect, useState } from 'react';
+import { getAllUsers } from "@/lib/api/getAllUsers"
+import { UserDisplay } from "@/components/userDisplay"
 
-export default function UserRecords() {
-  const [users, setUsers] = useState([]);
-
-  useEffect(() => {
-    const fetchUserRecords = async () => {
-      try {
-        const response = await fetch('/api/userrecords');
-        if (!response.ok) {
-          throw new Error('Failed to fetch user records');
-        }
-        const data = await response.json();
-        setUsers(data);
-      } catch (err) {
-        console.log(err.message);
-      }
-    };
-    fetchUserRecords();
-  }, []);
-
+export default async function UserRecords() {
+  const users = await getAllUsers()
+  
   return (
     <div>
       <h1>User Records</h1>
-      <ul>
-        { (users.map((user, index) => 
-        (<li key={index}>{user.first_name}</li>)
-        ))}
-      </ul>
+      {users.map((user) => (
+        <UserDisplay key={user.user_id} user={user} />
+      ))}
     </div>
-  );
+  )
 }
+
+
