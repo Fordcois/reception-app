@@ -8,12 +8,21 @@ body{
 
 }
 
-.Centeralised-container {
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+.Centralised-container {
+  flex-grow: 1; 
   display: flex;
   flex-direction: column;
   justify-content: center;   
   align-items: center;
-  min-height: 90vh;
+  background-color: white;
 }
 /* NavBar Componenets */
 .Navbar-Container{
