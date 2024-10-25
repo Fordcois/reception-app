@@ -3,8 +3,8 @@ import { NavBar } from "@/components/navigationBar";
 
 
 export const metadata: Metadata = {
-  title: "Please Register Your Attendance",
-  description: "Reigster you attendance on entering & Leaving the building",
+  title: "TaxAssist",
+  description: "Welcome to TaxAssist",
 };
 
 export default function RootLayout({
@@ -17,6 +17,7 @@ export default function RootLayout({
       <body className="app-container">
         <NavBar/>
         {children} 
+        <div className="Footer"/>
       </body>
     </html>
   );
