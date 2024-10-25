@@ -14,18 +14,27 @@ export default function UserRecords() {
     .then(setUsers);
   }, []);
 
-  const filteredUsers = users.filter(user =>
-    user.first_name.toLowerCase().includes(searchCriteria.toLowerCase())
-  );
+  const filteredUsers = searchCriteria.length <= 1
+  ? users 
+  : users.filter(user =>
+      (user.first_name + ' ' + user.last_name).toUpperCase().includes(searchCriteria.toUpperCase())
+    );
+
+
 
   return (
-    <div>
-      <h1>User Records</h1>
-      <SearchBar searchCriteria={searchCriteria} setSearchCriteria={setSearchCriteria}/>
+    <div className='page-container'>
 
-      {filteredUsers.map((user) => (
-        <UserDisplay key={user.user_id} user={user} />
-      ))}
+      <div className='page-title-banner'>
+        <h1>Search Staff</h1>
+        <SearchBar searchCriteria={searchCriteria} setSearchCriteria={setSearchCriteria}/>
+      </div>
+      
+    <div className='users-container'>
+        {filteredUsers.map((user) => (
+          <UserDisplay key={user.user_id} user={user} />
+        ))}
+      </div>
     </div>
   );
 }

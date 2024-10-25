@@ -7,8 +7,8 @@
 body{
   padding: 0;
   margin: 0;
-
 }
+
 h1{
   font-family: "Oswald", sans-serif;
   color: var(--Tertiary);
@@ -17,6 +17,9 @@ h1{
   text-decoration: underline 5px solid var(--Secondary);
   margin-bottom: 5px;
   margin-top: 5px;
+}
+.page-container{
+  width: 95%;
 }
 
 .app-font{
@@ -55,8 +58,15 @@ h1{
   flex-direction: column;
   align-items: center;
   justify-content: flex-start; 
-  padding-top: 50px; 
-  gap: 20px; }
+  width: 100%;
+  overflow-y: scroll;
+}
+.centralised{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
 .Footer{
   background-color: var(--Primary);
@@ -74,4 +84,41 @@ h1{
   background-color: var(--Secondary);
   height: 10px;
   box-shadow: 0px 5px 10px #0000001f;
+}
+
+/* SearchBar */
+.form-field {
+  position: relative;
+  display: inline-block;
+}
+
+.icon {
+  position: absolute;
+  left:10px;
+  top: 12px;
+  color: var(--Primary);
+}
+.delete{
+  position: absolute;
+  right:10px;
+  top: 12px;
+  color: var(--Primary);
+  cursor: pointer;
+}
+.Searchbar{
+  padding-left: 25px;
+  padding-right: 20px;
+  border: 2px solid var(--Secondary);
+  border-radius: 25px;
+  min-width: 300px;
+  height: 35px;
+}
+
+/* Directory */
+
+.page-title-banner{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
