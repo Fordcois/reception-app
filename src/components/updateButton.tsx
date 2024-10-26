@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import '../app/globals.css';
 import { updateSingleUser } from '@/lib/api/updateSingleUser';
 
@@ -9,27 +9,45 @@ interface Props {
 }
 
 export const UpdateButton: React.FC<Props> = ({ user_id, in_building }) => {
-    const [statusChanged, setStatusChanged] = useState(false); 
+    const [showPopup, setShowPopup] = useState(false);
 
-    const changeSigninStatus = async () => {
-        try {
-            await updateSingleUser(user_id, !in_building);
-            setStatusChanged(true);
-            //TODO - Add Sucess Message to Pass to Window
-        } catch {
-            //TODO - Add Error Message to Pass to Window
-        } 
+
+useEffect(() => {
+    if (showPopup) {
+    const timer = setTimeout(() => {
+        setShowPopup(false);
+    }, 3000);
+    return () => clearTimeout(timer);
+    }
+    }, [showPopup]);
+
+const changeSigninStatus = async () => {
+    try {
+        await updateSingleUser(user_id, !in_building);
+        setShowPopup(true);
+    } catch (error) {
+    console.error('Error updating status:', error);
+
+    }
     };
 
     return (
-            <div 
-                style={{backgroundColor: statusChanged ? 'gray' : 'blue'}}
-                onClick={changeSigninStatus}
-            >
-            {in_building? 'Sign Out' : 'Sign in'}
-            </div>
+    <div className="relative">
+    <div
+        onClick={changeSigninStatus}
+        className="Button"
+    >
+    {in_building ? 'Sign Out' : 'Sign in'}
+    </div>
 
+    {showPopup && (
+        <div className="popup-overlay">
+        <div className="popup-content">
+        <p>Thank you - your sign {in_building ? 'out' : 'in'} was successful.</p>
+        </div>
+        </div>
+    )}
 
-
-    );
+    </div>
+);
 };
