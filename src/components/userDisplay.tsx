@@ -9,7 +9,7 @@ export const UserDisplay: React.FC<Props> = ({ user }) => {
 return (
 <Link className='user-display-card' href={`/users/${user.user_id}`}>
 
-<div className={`image-container ${user.in_building ? 'present' : 'absent'}`}>
+<div className={`image-container ${user.in_building ? '' : 'absent'}`}>
   <Image 
     src={user.picture_url} 
     alt={`${user.first_name} ${user.last_name}'s picture`} 
@@ -18,8 +18,11 @@ return (
   />
 </div>
     <div>
-        {user.first_name} {user.last_name}<br/>
-        {user.job_title}
+        <span className='user-name-title'>{user.first_name} {user.last_name}</span>
+        <br/>
+        <span className='job-title-text'>{user.job_title}</span>
+        <br/>
+        <span className='out-of-office-message'>{user.in_building? ' ':'Unavailable'}</span>
     </div>
 
 </Link>

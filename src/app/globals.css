@@ -3,6 +3,8 @@
   --Primary: rgb(0,92,190);
   --Secondary:rgb(255,226,4);
   --Tertiary: rgb(14,0,103);
+  --DarkGray:rgb(192, 192, 192);
+  --LightGray:rgb(245, 245, 245);
 }
 body{
   padding: 0;
@@ -23,7 +25,7 @@ h1{
 }
 
 .app-font{
-  color: var(--Tertiary);
+  color: var(--DarkGray);
   font-family: 'Oswald';
   text-transform: uppercase;
 }
@@ -125,14 +127,23 @@ h1{
 }
 
 .users-container {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(3, auto); 
+  gap: 1rem; 
 }
 
-.user-display-card{
-  border: 2px solid var(--Tertiary);
-  display: flex;
+.user-display-card {
+  background-color: var(--LightGray);
   padding: 5px;
+  text-decoration: none;
+  border-radius: 10px;
+  box-shadow: 5px 5px 10px #0000000e;
+  display: flex;
+  color: var(--Tertiary);
+}
+.user-name-title{
+  font-family: "Oswald";
+  text-transform: uppercase;
 }
 
 .image-container {
@@ -140,19 +151,37 @@ h1{
   height: 50px;
   overflow: hidden;
   border-radius: 50%;
+  margin-right: 10px;
+  border: 3px solid var(--Secondary)
 }
 
 .image-container.absent {
-  border: 3px solid red; 
+  /* border: 3px solid rgb(241, 143, 143); */
+  filter:grayscale(100%)
 }
 
-.image-container.present {
-  border: 3px solid green; 
-}
+
 
 .image-container img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: top;
+  background-color: aliceblue;
+}
+
+.user-card-first-line{
+  display: flex;
+  background-color: aqua;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.out-of-office-message{
+  color: var(--DarkGray);
+  font-family: "Oswald";
+}
+.job-title-text{
+  color: var(--Primary);
+  font-family: "Oswald";
 }
