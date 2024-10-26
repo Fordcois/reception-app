@@ -10,7 +10,7 @@ interface Props {
 }
 
 export const UpdateButton: React.FC<Props> = ({ user_id, in_building }) => {
-    const [showPopup, setShowPopup] = useState<boolean>(true);
+    const [showPopup, setShowPopup] = useState<boolean>(false);
 
 const changeSigninStatus = async () => {
     try {
