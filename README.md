@@ -29,7 +29,7 @@ The `users/[ID]` page gets this ID from the URL parameters and uses an API call 
 
 On the `users/[ID]` there is an update that sends an update to the database about the in_building status of the user. 
 
-### Design 
+### User interface 
 Given the application is designed for an iPad in reception, the interface is designed to be light and minimalist. Large images and fonts with contrasting colors are chosen to make the app easy to use with touch controls.
 
 ## Setup Instructions
@@ -61,13 +61,6 @@ Given the application is designed for an iPad in reception, the interface is des
    DB_PORT=<your_database_port>
    DB_NAME=<your_database_name>
    ```
-
-
-
-### Database 
-You will need a Postgres server running and create a database called `reception` reception' - You can populate this using the data in `Database_Seed_Data.SQL`
-
-
 
 ### Future Scope
 
