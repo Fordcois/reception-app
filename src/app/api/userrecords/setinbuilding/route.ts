@@ -4,7 +4,6 @@ import pool from '@/lib/db';
 export async function PUT(request: Request) {
   try {
     const { user_id, in_building } = await request.json();
-    console.log('SINGLE OPTION REACHED', user_id, in_building);
     const result = await pool.query(
       "UPDATE users SET in_building = $1 WHERE user_id = $2 RETURNING *",
       [in_building, user_id]

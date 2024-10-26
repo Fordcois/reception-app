@@ -1,4 +1,4 @@
-import { UserType } from "@/types/User"; // Assuming this is your User type
+import { UserType } from "@/types/User"; 
 
 export async function getSingleUser(userId: string): Promise<UserType> {
   const response = await fetch(`http://localhost:3000/api/userrecords/${userId}`);

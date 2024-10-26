@@ -5,7 +5,6 @@ export async function GET(request: Request, props: { params: Promise<{ userid: s
     const params = await props.params;
     try {
         const { userid } = params;
-        console.log(`Fetching records for user: ${userid}`);
         const records = await pool.query("SELECT * FROM users WHERE user_id = $1", [userid]);
         return NextResponse.json(records.rows[0]);
         } catch (error) {

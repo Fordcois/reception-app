@@ -10,8 +10,7 @@ interface Props {
 }
 
 export const UpdateButton: React.FC<Props> = ({ user_id, in_building }) => {
-    const [showPopup, setShowPopup] = useState<boolean>(false);
-
+const [showPopup, setShowPopup] = useState<boolean>(false);
 const changeSigninStatus = async () => {
     try {
         await updateSingleUser(user_id, !in_building);
@@ -19,19 +18,14 @@ const changeSigninStatus = async () => {
     } catch (error) {
     console.error('Error updating status:', error);
     }
-    };
-
-    return (
-    <div className="relative">
-    <div
-        onClick={changeSigninStatus}
-        className="Button"
-    >
-    {in_building ? 'Sign Out' : 'Sign in'}
+};
+return (
+    
+<div className="relative">
+    <div onClick={changeSigninStatus} className="Button" >
+        {in_building ? 'Sign Out' : 'Sign in'}
     </div>
-
     {showPopup && (<Popup in_building={in_building}/>)}
-
-    </div>
+</div>
 );
 };

@@ -20,6 +20,8 @@ The site is built in NextJS, including the frontend and a basic API to interact 
 
 TypeScript is used to ensure type safety, especially when dealing with pulling information from the server and serving this as props to the components.
 
+Jest is used for testing.
+
 ### Architecture
 This was designed over three main pages - A welcome page, a directory page and a single profile page for each member of staff. A rough diagram can be seen here ![Planning Diagram](public/Reception-App-Sketch.png)
 
@@ -27,7 +29,7 @@ The `users` page populates from an API call and then generates a custom URL with
 
 The `users/[ID]` page gets this ID from the URL parameters and uses an API call to get the information from the server. It was a consideration that this API call might be unnecessary given that the user information could be separated and passed through as a prop from the directory ,this was decided against to makes the site less reliant on a specific navigation method to work. Should a user directly access their URL, using a separate API call will still work.
 
-On the `users/[ID]` there is an update that sends an update to the database about the in_building status of the user. 
+On the `users/[ID]` page there is an update that sends an update to the database about the in_building status of the user. 
 
 ### User interface 
 Given the application is designed for an iPad in reception, the interface is designed to be light and minimalist. Large images and fonts with contrasting colors are chosen to make the app easy to use with touch controls.
@@ -54,12 +56,28 @@ Given the application is designed for an iPad in reception, the interface is des
 5. **Configure Environment Variables**
    - In the root directory, create a `.env` file and add the following values, adjusting as needed:
 
-   ```plaintext
+   ```
    DB_USER=<your_database_user>
    DB_PASSWORD=<your_database_password>
    DB_HOST=<your_database_host>
    DB_PORT=<your_database_port>
    DB_NAME=<your_database_name>
+   ```
+
+6. **Start the Development Server** 
+   - Start the development server using    
+   ```
+   npm run dev
+   ```
+   Browse the project by visiting http://localhost:3000/
+
+## Testing
+
+1. Make sure the Dev Server is running with the seeded Database
+
+2. With the server running, run this command in another terminal window
+   ```
+   npm run test
    ```
 
 ### Future Scope
@@ -76,5 +94,5 @@ Given the application is designed for an iPad in reception, the interface is des
 - **Robust Error Handling**  
   Strengthen the application’s ability to manage and recover from errors, particularly with failed updates or API calls, to provide a more resilient user experience.
 
-- **Improved Test Coverage**  
-  Extend the existing test suite to cover additional cases, ensuring comprehensive testing and reliability across all functionalities.
+- **Improved Test Coverage & Suite**  
+  Extend the existing test suite to cover additional cases - Tests are currently run on the production database and should be seperated out to a test build.
